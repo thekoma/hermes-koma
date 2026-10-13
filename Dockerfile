@@ -116,6 +116,16 @@ ADD --chown=10000:10000 \
 # Boot-time sync of the plugin into the $HERMES_HOME volume (s6 cont-init).
 COPY --chmod=0755 scripts/cont-init.d/03-agentmemory-plugin /etc/cont-init.d/03-agentmemory-plugin
 
+# --- openviking memory plugin, at the commit the base image's catalog pins ---
+# hermes-agent v0.21.7 moved it out of core and clones it from GitHub at boot,
+# which fails on pods with default-deny egress (GLaDOS). No separate Renovate
+# pin: the SHA comes from /opt/hermes/plugin-catalog/openviking.yaml, so it
+# moves with the base digest.
+COPY --chmod=0755 scripts/install-openviking-plugin.sh /tmp/scripts/install-openviking-plugin.sh
+RUN /tmp/scripts/install-openviking-plugin.sh && \
+    chown -R 10000:10000 /opt/openviking-hermes-plugin
+COPY --chmod=0755 scripts/cont-init.d/04-openviking-plugin /etc/cont-init.d/04-openviking-plugin
+
 # Cleanup our staging dir.
 RUN rm -rf /tmp/scripts
 
