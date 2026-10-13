@@ -6,7 +6,7 @@
 # Pinned by digest so the image only rebuilds when upstream actually moves:
 # Renovate opens a digest PR when `latest` changes, its merge triggers the build.
 # renovate: datasource=docker depName=nousresearch/hermes-agent versioning=docker
-ARG HERMES_VERSION=latest@sha256:d4da4a40cd7a28aba983775d9fd31d94cbf153eeb0cb9e844d6d0f612b7c24db
+ARG HERMES_VERSION=latest@sha256:444b42594e7f467425872fc35e077a227d377f0fe0726bc818706d62175fad8b
 
 # ---------- Stage 1: Go MCP servers ----------
 FROM golang:1.26-alpine AS gobuilder
