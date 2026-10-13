@@ -18,10 +18,11 @@
       "automerge": true
     },
     {
-      "description": "Always automerge upstream hermes-agent bumps",
+      "description": "Always automerge upstream hermes-agent bumps, at any time: the Mend app rarely runs inside the global 'before 3am' window, so v0.21.6/v0.21.7 sat in Awaiting Schedule for days.",
       "matchPackageNames": ["nousresearch/hermes-agent"],
       "matchDatasources": ["docker"],
-      "automerge": true
+      "automerge": true,
+      "schedule": ["at any time"]
     },
     {
       "description": "Kubernetes/kubectl bumps need human review (k8s major-minor cadence)",
