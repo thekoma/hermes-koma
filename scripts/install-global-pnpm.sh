@@ -33,12 +33,14 @@ done
 # node 26 (v26.5.1 in the base image) corepack is no longer bundled — it was
 # unbundled in node 25 — so `corepack enable` exits 127 and takes the build with
 # it.  Prefer it when present, otherwise install pnpm straight from npm; either
-# way pnpm lands in /usr/local/bin, which is npm's global prefix here.
+# way pnpm lands in /usr/local/bin.  The prefix is explicit: since v0.21.6 the
+# base image installs node through `pm` and only symlinks npm into
+# /usr/local/bin, so npm's default global prefix is no longer on PATH.
 if command -v corepack >/dev/null 2>&1; then
     corepack enable pnpm
     corepack prepare pnpm@"${PNPM_VERSION}" --activate
 else
-    npm install -g pnpm@"${PNPM_VERSION}"
+    npm install -g --prefix /usr/local pnpm@"${PNPM_VERSION}"
 fi
 
 mkdir -p "$PNPM_HOME/bin"
