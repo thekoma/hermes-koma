@@ -1,0 +1,23 @@
+#!/command/with-contenv sh
+# shellcheck shell=sh
+# Sync the image-baked OpenViking memory plugin into the persistent
+# $HERMES_HOME volume on every boot, so an image upgrade refreshes it without
+# a GitHub clone at runtime. The image is the source of truth: local edits
+# under plugins/openviking are clobbered by design. The destination is
+# replaced, not merged, so files dropped upstream do not linger.
+# Activation still lives in config.yaml (memory.provider: openviking).
+set -eu
+
+SRC=/opt/openviking-hermes-plugin
+[ -d "$SRC" ] || exit 0
+[ -n "${HERMES_HOME:-}" ] && [ -d "${HERMES_HOME:-}" ] || exit 0
+
+DST="$HERMES_HOME/plugins/openviking"
+mkdir -p "$HERMES_HOME/plugins"
+TMP="$HERMES_HOME/plugins/.openviking.sync"
+rm -rf "$TMP"
+cp -R "$SRC" "$TMP"
+rm -rf "$DST"
+mv "$TMP" "$DST"
+# By name, not by number: stage2-hook.sh may have remapped the hermes user.
+chown -R hermes:hermes "$DST"
