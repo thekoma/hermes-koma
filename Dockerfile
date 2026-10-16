@@ -39,7 +39,7 @@ ARG HELM_VERSION=v4.2.0
 # renovate: datasource=github-releases depName=kubernetes/kubernetes
 ARG KUBECTL_VERSION=v1.35.1
 # renovate: datasource=npm depName=@anthropic-ai/claude-code
-ARG CLAUDE_CODE_VERSION=2.1.173
+ARG CLAUDE_CODE_VERSION=2.1.301
 # Provided by buildx: amd64|arm64 — matches the target platform.
 ARG TARGETARCH
 
