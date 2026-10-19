@@ -37,7 +37,7 @@ ARG ARGOCD_VERSION=v3.5.5
 # renovate: datasource=github-releases depName=helm/helm
 ARG HELM_VERSION=v4.3.1
 # renovate: datasource=github-releases depName=kubernetes/kubernetes
-ARG KUBECTL_VERSION=v1.35.1
+ARG KUBECTL_VERSION=v1.37.1
 # renovate: datasource=npm depName=@anthropic-ai/claude-code
 ARG CLAUDE_CODE_VERSION=2.1.302
 # Provided by buildx: amd64|arm64 — matches the target platform.
