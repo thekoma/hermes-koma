@@ -104,6 +104,17 @@ RUN apt-get update && \
     rm -rf /root/.cache /tmp/node-compile-cache \
         /var/lib/apt/lists/* /var/cache/apt/archives/*
 
+# --- mise-tools-update.sh (baked, targets the persistent $HOME/mise state) ---
+# Keeps mise itself + every mise-managed "live" tool (node, ripgrep,
+# claude-code, codex...) current. Lives here — not on the $HOME volume —
+# for the same reason the image itself is baked: it's part of the update
+# mechanism, so it must survive a volume wipe/fresh-provision intact rather
+# than depending on something it might be asked to bootstrap. It reads/writes
+# nothing under the image filesystem itself; all state it touches is on
+# $HOME. See scripts/cont-init.d/README or the hermes-side
+# `persistent-tooling-in-container` skill for how it's scheduled.
+COPY --chmod=0755 scripts/mise-tools-update.sh /usr/local/bin/mise-tools-update.sh
+
 # --- agentmemory hermes plugin (pure-stdlib Python, no deps) ---
 # Staged in the image; HERMES_HOME lives on a volume, so activate it with:
 #   cp -r /opt/agentmemory-hermes-plugin $HERMES_HOME/plugins/agentmemory

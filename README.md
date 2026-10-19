@@ -11,6 +11,7 @@ adds:
 | **Shell QoL** | `gh`, `jq`, `yq`, `lsof`, `mosh`, `ncdu`, `sqlite3`, `tmux`, `vim`, `wget`, `iproute2` |
 | **Vault CLI** | `vault` |
 | **Package managers** | `pipx`, `pnpm` (with `mcporter` global) |
+| **Update automation** | `mise-tools-update.sh` at `/usr/local/bin` — self-updates mise + its managed live tools (node, ripgrep, claude-code, codex) on the persistent `$HOME` volume |
 
 ## Image
 
