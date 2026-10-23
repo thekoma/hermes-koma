@@ -86,7 +86,7 @@ ENV PATH="$PNPM_HOME/bin:$PATH"
 # renovate: datasource=npm depName=pnpm
 ARG PNPM_VERSION=11.22.0
 # renovate: datasource=npm depName=mcporter
-ARG MCPORTER_VERSION=0.13.7
+ARG MCPORTER_VERSION=0.16.0
 # renovate: datasource=npm depName=@agentmemory/mcp
 ARG AGENTMEMORY_MCP_VERSION=0.9.30
 
