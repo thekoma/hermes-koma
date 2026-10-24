@@ -69,8 +69,12 @@ RUN /tmp/scripts/install-system-pkgs.sh
 # so every web_extract/fetch of an attacker-controlled page reaches the bug.
 # Drop this once upstream locks brotlicffi >= 1.2.1.0
 # (NousResearch/hermes-agent#106659).
+# Upstream's pyproject sets uv `exclude-newer = "3 days"`, which hides 1.2.1.0
+# (2026-10-22) until 2026-10-25: exact pin + a per-package exception for this
+# one package only, the rest of the quarantine stays in force.
 RUN /opt/hermes/tools/uv-*/uv pip install --python /opt/hermes/.venv/bin/python \
-        --no-cache "brotlicffi>=1.2.1.0" && \
+        --no-cache --exclude-newer-package "brotlicffi=2026-10-23T00:00:00Z" \
+        "brotlicffi==1.2.1.0" && \
     /opt/hermes/.venv/bin/python -c "import importlib.metadata as m, sys; \
 v = m.version('brotlicffi'); print('brotlicffi', v); \
 sys.exit(0 if tuple(map(int, v.split('.')[:3])) >= (1, 2, 1) else 1)"
