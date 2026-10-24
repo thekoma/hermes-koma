@@ -64,6 +64,17 @@ USER root
 COPY scripts/install-system-pkgs.sh /tmp/scripts/install-system-pkgs.sh
 RUN /tmp/scripts/install-system-pkgs.sh
 
+# CVE-2026-111497 (Brotli decoder OOB write). Upstream's uv.lock still pins
+# brotlicffi 1.2.0.2; urllib3/requests/httpx decode `br` responses through it,
+# so every web_extract/fetch of an attacker-controlled page reaches the bug.
+# Drop this once upstream locks brotlicffi >= 1.2.1.0
+# (NousResearch/hermes-agent#106659).
+RUN /opt/hermes/tools/uv-*/uv pip install --python /opt/hermes/.venv/bin/python \
+        --no-cache "brotlicffi>=1.2.1.0" && \
+    /opt/hermes/.venv/bin/python -c "import importlib.metadata as m, sys; \
+v = m.version('brotlicffi'); print('brotlicffi', v); \
+sys.exit(0 if tuple(map(int, v.split('.')[:3])) >= (1, 2, 1) else 1)"
+
 # --- pinned CLI binaries from the clitools stage ---
 COPY --from=clitools /out/argocd  /usr/local/bin/argocd
 COPY --from=clitools /out/helm    /usr/local/bin/helm
