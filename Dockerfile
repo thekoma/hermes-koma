@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1.7
+# syntax=docker/dockerfile:1.28
 # Hermes Agent image with k8s + MCP toolbelt baked on top of upstream.
 
 # Global ARG — must be declared before the first FROM so subsequent FROM
