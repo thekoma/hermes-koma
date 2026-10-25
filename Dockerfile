@@ -99,7 +99,7 @@ ENV PNPM_HOME=/usr/local/share/pnpm
 ENV PATH="$PNPM_HOME/bin:$PATH"
 
 # renovate: datasource=npm depName=pnpm
-ARG PNPM_VERSION=11.22.0
+ARG PNPM_VERSION=11.28.8
 # renovate: datasource=npm depName=mcporter
 ARG MCPORTER_VERSION=0.16.0
 # renovate: datasource=npm depName=@agentmemory/mcp
