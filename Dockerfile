@@ -9,7 +9,7 @@
 ARG HERMES_VERSION=latest@sha256:9c5561579f3ffdf333401797094ac3a743738d6c25d40f4331c7bf77b694238d
 
 # ---------- Stage 1: Go MCP servers ----------
-FROM golang:1.26-alpine AS gobuilder
+FROM golang:1.27-alpine AS gobuilder
 
 # renovate: datasource=github-releases depName=grafana/mcp-grafana
 ARG MCP_GRAFANA_VERSION=v0.17.2
