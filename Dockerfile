@@ -124,7 +124,7 @@ RUN apt-get update && \
 #   cp -r /opt/agentmemory-hermes-plugin $HERMES_HOME/plugins/agentmemory
 # plus `memory.provider: agentmemory` in config.yaml (see its README).
 # renovate: datasource=github-tags depName=rohitg00/agentmemory
-ARG AGENTMEMORY_VERSION=v0.9.30
+ARG AGENTMEMORY_VERSION=v0.9.31
 ADD --chown=10000:10000 \
     https://github.com/rohitg00/agentmemory.git#${AGENTMEMORY_VERSION}:integrations/hermes \
     /opt/agentmemory-hermes-plugin
