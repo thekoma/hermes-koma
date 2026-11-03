@@ -12,7 +12,7 @@ ARG HERMES_VERSION=latest@sha256:d27689bc6e8581ec884a7227c9101fdaebf6c853cff8859
 FROM golang:1.27-alpine AS gobuilder
 
 # renovate: datasource=github-releases depName=grafana/mcp-grafana
-ARG MCP_GRAFANA_VERSION=v2.1.1
+ARG MCP_GRAFANA_VERSION=v2.2.0
 # renovate: datasource=github-releases depName=hashicorp/vault-mcp-server
 ARG VAULT_MCP_SERVER_VERSION=v0.2.0
 
