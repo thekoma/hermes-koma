@@ -33,7 +33,7 @@ RUN ls -altr /go/bin
 FROM debian:trixie-slim AS clitools
 
 # renovate: datasource=github-releases depName=argoproj/argo-cd
-ARG ARGOCD_VERSION=v3.5.6
+ARG ARGOCD_VERSION=v3.5.7
 # renovate: datasource=github-releases depName=helm/helm
 ARG HELM_VERSION=v4.3.1
 # renovate: datasource=github-releases depName=kubernetes/kubernetes
