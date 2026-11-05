@@ -103,7 +103,7 @@ ARG PNPM_VERSION=12.16.1
 # renovate: datasource=npm depName=mcporter
 ARG MCPORTER_VERSION=0.16.1
 # renovate: datasource=npm depName=@agentmemory/mcp
-ARG AGENTMEMORY_MCP_VERSION=0.9.31
+ARG AGENTMEMORY_MCP_VERSION=0.9.32
 
 COPY scripts/install-global-pnpm.sh /tmp/scripts/install-global-pnpm.sh
 RUN apt-get update && \
